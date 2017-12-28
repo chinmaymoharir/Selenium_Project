@@ -120,5 +120,7 @@ public class ValidateLoginPage extends ReadDataFromProperties{
 		driver.switchTo().alert().accept();
 		
 		driver.close();
+		
+		
 	}
 }
