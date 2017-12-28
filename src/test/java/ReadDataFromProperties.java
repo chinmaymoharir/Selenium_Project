@@ -5,8 +5,11 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Properties;
 
+import org.openqa.selenium.WebDriver;
+
 public class ReadDataFromProperties {
 	 Properties prop = new Properties();
+	 public static WebDriver driver;
 		public void ReadDataProp(){
 	
 		File file = new File("F:/Selenium/01/Global.properties");
