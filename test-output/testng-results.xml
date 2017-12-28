@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="16099" started-at="2017-12-28T01:01:18Z" finished-at="2017-12-28T01:01:34Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="16099" started-at="2017-12-28T01:01:18Z" finished-at="2017-12-28T01:01:34Z">
+      <class name="ValidateLoginPage">
+        <test-method status="PASS" signature="loginValidationwithInvalidParameters(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:ValidateLoginPage@32d2fa64]" name="loginValidationwithInvalidParameters" duration-ms="9358" started-at="2017-12-27T17:01:18Z" finished-at="2017-12-27T17:01:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://www.demo.guru99.com/V4/]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[mngr110543]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[jumAged]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[mnsgshs]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[jumSbdajb]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginValidationwithInvalidParameters -->
+        <test-method status="PASS" signature="loginValidationwithValidParameters(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:ValidateLoginPage@32d2fa64]" name="loginValidationwithValidParameters" duration-ms="6691" started-at="2017-12-27T17:01:27Z" finished-at="2017-12-27T17:01:34Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://www.demo.guru99.com/V4/]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[mngr110543]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[jumAged]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginValidationwithValidParameters -->
+      </class> <!-- ValidateLoginPage -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
