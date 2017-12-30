@@ -43,12 +43,11 @@ public class ValidateLoginPage extends ReadDataFromProperties{
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		
 		//verify home page displayed after valid credentials
-		driver.findElement(By.xpath("//*[@class='barone' and contains(text(),'Guru99 Bank')]")).isDisplayed();
-		driver.findElement(By.xpath("//li[@class='orange']//a[contains(text(),'Manager')]")).isDisplayed();
+		Assert.assertTrue(driver.findElement(By.xpath("//*[@class='barone' and contains(text(),'Guru99 Bank')]")).isDisplayed(), "Login is not successful");
+		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='orange']//a[contains(text(),'Manager')]")).isDisplayed(), "Login is not successful");
 		
-		//logout of application
-		driver.findElement(By.xpath("//li//a[contains(text(),'Log out')]")).isDisplayed();
-		driver.findElement(By.xpath("//li//a[contains(text(),'Log out')]")).click();
+		Assert.assertTrue(driver.findElement(By.xpath("//a[contains(text(),'New Customer')]")).isDisplayed(), "New customer tab is not visible");
+		driver.findElement(By.xpath("//a[contains(text(),'New Customer')]")).click();
 		driver.close();
 	}
 	

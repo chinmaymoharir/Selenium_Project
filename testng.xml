@@ -8,7 +8,7 @@
 	<parameter name="invalidUsername" value="mnsgshs"/>
 	<parameter name="invalidPassword" value="jumSbdajb"/>
 	<classes>
-      <class name="LoginThroughDataDriven"/>
+      <class name="CreateNewCustomer"/>
 	 
     </classes>
   </test> <!-- Test -->

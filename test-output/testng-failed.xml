@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="-1" guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
-  <test name="Test(failed)">
-    <parameter name="password" value="jumAged"/>
-    <parameter name="invalidUsername" value="mnsgshs"/>
-    <parameter name="invalidPassword" value="jumSbdajb"/>
-    <parameter name="URL" value="http://www.demo.guru99.com/V4/"/>
-    <parameter name="username" value="mngr110543"/>
+<suite thread-count="-1" guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
     <classes>
-      <class name="LoginThroughDataDriven">
+      <class name="CreateNewCustomer">
         <methods>
-          <include name="Login"/>
+          <include name="TC_01"/>
         </methods>
-      </class> <!-- LoginThroughDataDriven -->
+      </class> <!-- CreateNewCustomer -->
     </classes>
-  </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

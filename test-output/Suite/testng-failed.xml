@@ -8,11 +8,11 @@
     <parameter name="URL" value="http://www.demo.guru99.com/V4/"/>
     <parameter name="username" value="mngr110543"/>
     <classes>
-      <class name="LoginThroughDataDriven">
+      <class name="CreateNewCustomer">
         <methods>
-          <include name="Login"/>
+          <include name="TC_01" invocation-numbers="0"/>
         </methods>
-      </class> <!-- LoginThroughDataDriven -->
+      </class> <!-- CreateNewCustomer -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
