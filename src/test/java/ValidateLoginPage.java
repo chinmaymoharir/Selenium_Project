@@ -8,13 +8,11 @@ import org.testng.annotations.Test;
 
 
 public class ValidateLoginPage extends ReadDataFromProperties{
-
+	public static WebDriver driver;
 	@Test
 	@Parameters({ "URL","username", "password" })
 	public void loginValidationwithValidParameters(String URL, String username, String password) throws Exception{
 		
-		
-		WebDriver driver;
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();	
 		driver.manage().deleteAllCookies();
@@ -57,7 +55,7 @@ public class ValidateLoginPage extends ReadDataFromProperties{
 	@Test
 	@Parameters({ "URL","username", "password", "invalidUsername", "invalidPassword" })
 	public void loginValidationwithInvalidParameters(String URL, String username, String password, String invalidUsername, String invalidPassword) throws Exception{
-		WebDriver driver;
+		
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();	
 		driver.manage().deleteAllCookies();
