@@ -10,7 +10,7 @@
     <classes>
       <class name="CreateNewCustomer">
         <methods>
-          <include name="TC_01" invocation-numbers="0"/>
+          <include name="TC_02"/>
         </methods>
       </class> <!-- CreateNewCustomer -->
     </classes>
