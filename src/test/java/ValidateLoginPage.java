@@ -1,118 +1,113 @@
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.Constants.Alerts;
+import com.Pages.HomePage;
+import com.Pages.LoginPage;
 
+/*Test Case Created By Chinmay Moharir
+ * Title: Validate Login for the application
+*/
 public class ValidateLoginPage extends ReadDataFromProperties{
 	public static WebDriver driver;
 	@Test
-	@Parameters({ "URL","username", "password" })
-	public void loginValidationwithValidParameters(String URL, String username, String password) throws Exception{
+	@Parameters({ "URL"})
+	public void TC01_ValidLoginCredentials(String URL) throws Exception{
+		/*InvokeBrowserSettings invoke = new InvokeBrowserSettings();
+		invoke.invokeBrowser(driver, URL);
+		*/LoginPage login = new LoginPage(driver);
+		HomePage home = new HomePage(driver);
 		
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();	
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		
 		//Open URL
 		driver.get(URL);
 		
-		//verify if login page is displayed
-		//We are using assert instead of verify statement because this will help prevent the code from stopping at this point if it fails.
-		//It will continue execution even if it fails at this point
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).isDisplayed(), "login box is not present on UI");
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='password' and @type='password']")).isDisplayed(), "password box is not present on UI");
+		//verify if login page is displayed correctly
+		Assert.assertTrue(driver.findElement(login.usernameField).isDisplayed(), "login box is not present on UI");
+		Assert.assertTrue(driver.findElement(login.passwordField).isDisplayed(), "password box is not present on UI");
+		Assert.assertTrue(driver.findElement(login.loginSubmitButton).isDisplayed(), "login button is not present on UI");
 		
+		//login to app
+		login.typeUsername(driver);
+		login.typePassword(driver);
 		
-		//Enter valid username password and click login
-		driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).sendKeys(username);
-		driver.findElement(By.xpath("//*[@name='password' and @type='password']")).sendKeys(password);
+		login.loginApp(driver);
 		
-		//Verify if login button is displayed
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).isDisplayed(), "Login button is displayed");
+		//validate login page
+		Assert.assertTrue(driver.findElement(home.homePageLogo).isDisplayed(), "Home page logo is not displayed");
+		Assert.assertTrue(driver.findElement(home.managerButton).isDisplayed(), "Manager button is not displayed");
+		Assert.assertTrue(driver.findElement(home.newCustomerButton).isDisplayed(), "New Customer button is not displayed");
 		
-		//login to the app and wait
-		driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		
-		//verify home page displayed after valid credentials
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@class='barone' and contains(text(),'Guru99 Bank')]")).isDisplayed(), "Login is not successful");
-		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='orange']//a[contains(text(),'Manager')]")).isDisplayed(), "Login is not successful");
-		
-		Assert.assertTrue(driver.findElement(By.xpath("//a[contains(text(),'New Customer')]")).isDisplayed(), "New customer tab is not visible");
-		driver.findElement(By.xpath("//a[contains(text(),'New Customer')]")).click();
 		driver.close();
 	}
 	
 	@Test
-	@Parameters({ "URL","username", "password", "invalidUsername", "invalidPassword" })
-	public void loginValidationwithInvalidParameters(String URL, String username, String password, String invalidUsername, String invalidPassword) throws Exception{
-		
+	@Parameters({ "URL"})
+	public void TC02_InValidLoginCredentials(String URL) throws Exception{
+		LoginPage login = new LoginPage(driver);
+		Alerts alert = new Alerts();
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();	
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		
 		//Open URL
 		driver.get(URL);
 		
-		//verify if login page is displayed
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).isDisplayed(), "Username is displayed on login page");
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='password' and @type='password']")).isDisplayed(), "Password is displayed on login page");
-		
+		//verify if login page is displayed correctly
+		Assert.assertTrue(driver.findElement(login.usernameField).isDisplayed(), "login box is not present on UI");
+		Assert.assertTrue(driver.findElement(login.passwordField).isDisplayed(), "password box is not present on UI");
+		Assert.assertTrue(driver.findElement(login.loginSubmitButton).isDisplayed(), "login button is not present on UI");
 		
 		//Enter invalid username and valid password and click login
-		driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).sendKeys(invalidUsername);
-		driver.findElement(By.xpath("//*[@name='password' and @type='password']")).sendKeys(password);
+		login.typeInvalidUsername(driver);
+		login.typePassword(driver);
 		
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).isDisplayed(), "Login putton is displayed");
-		driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).click();
+		login.loginApp(driver);
 		
 		//Verify popup is displayed for invalid username and valid password
-		Assert.assertEquals(driver.switchTo().alert().getText(), "User or Password is not valid", "Alert message not displayed correctly");
+		Assert.assertEquals(driver.switchTo().alert().getText(), alert.LOGIN_ALERT_POPUP, "Alert message not displayed correctly");
 		
 		driver.switchTo().alert().accept();
+
+		driver.navigate().to(URL);
 		
-		driver.get(URL);
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).isDisplayed(), "Username is displayed on login page");
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='password' and @type='password']")).isDisplayed(), "Password is displayed on login page");
-		
-		
+		//verify if login page is displayed correctly
+		Assert.assertTrue(driver.findElement(login.usernameField).isDisplayed(), "login box is not present on UI");
+		Assert.assertTrue(driver.findElement(login.passwordField).isDisplayed(), "password box is not present on UI");
+		Assert.assertTrue(driver.findElement(login.loginSubmitButton).isDisplayed(), "login button is not present on UI");
+				
 		//Enter valid username and invalid password and click login
-		driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).sendKeys(username);
-		driver.findElement(By.xpath("//*[@name='password' and @type='password']")).sendKeys(invalidPassword);
-		
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).isDisplayed(), "Login putton is displayed");
-		driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).click();
-		
-		//Verify popup is displayed for invalid username and valid password
-		Assert.assertEquals(driver.switchTo().alert().getText(), "User or Password is not valid", "Alert message not displayed correctly");
+		login.typeUsername(driver);
+		login.typeinvalidPassword(driver);
+				
+		login.loginApp(driver);
+		//Verify popup is displayed for valid username and invalid password
+		Assert.assertEquals(driver.switchTo().alert().getText(), alert.LOGIN_ALERT_POPUP, "Alert message not displayed correctly");
 		
 		driver.switchTo().alert().accept();
 		
-		driver.get(URL);
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).isDisplayed(), "Username is displayed on login page");
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='password' and @type='password']")).isDisplayed(), "Password is displayed on login page");
+		driver.navigate().to(URL);
 		
-		
-		//Enter valid invalid username and invalid password and click login
-		driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).sendKeys(invalidUsername);
-		driver.findElement(By.xpath("//*[@name='password' and @type='password']")).sendKeys(invalidPassword);
-		
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).isDisplayed(), "Login putton is displayed");
-		driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).click();
-		
-		//Verify popup is displayed for invalid username and valid password
-		Assert.assertEquals(driver.switchTo().alert().getText(), "User or Password is not valid", "Alert message not displayed correctly");
+		//verify if login page is displayed correctly
+		Assert.assertTrue(driver.findElement(login.usernameField).isDisplayed(), "login box is not present on UI");
+		Assert.assertTrue(driver.findElement(login.passwordField).isDisplayed(), "password box is not present on UI");
+		Assert.assertTrue(driver.findElement(login.loginSubmitButton).isDisplayed(), "login button is not present on UI");
+				
+		//Enter valid username and invalid password and click login
+		login.typeInvalidUsername(driver);
+		login.typeinvalidPassword(driver);
+				
+		login.loginApp(driver);
+		//Verify popup is displayed for invalid username and invalid password
+		Assert.assertEquals(driver.switchTo().alert().getText(), alert.LOGIN_ALERT_POPUP, "Alert message not displayed correctly");
 		
 		driver.switchTo().alert().accept();
 		

@@ -1,3 +1,4 @@
+package com.Pages;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -7,10 +8,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class InvokeBrowserSettings {
-	WebDriver driver;
+	public WebDriver driver;
 	@BeforeTest
 	@Parameters({ "URL"})
-	public void invokeBrowser(WebDriver driver, String URL) {
+	public void invokeBrowser(String URL) {
 		
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();	

@@ -2,54 +2,34 @@
 <testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="17443" started-at="2018-01-02T08:10:31Z" finished-at="2018-01-02T08:10:48Z">
+  <suite name="Suite" duration-ms="15208" started-at="2018-01-07T01:31:21Z" finished-at="2018-01-07T01:31:36Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="17443" started-at="2018-01-02T08:10:31Z" finished-at="2018-01-02T08:10:48Z">
-      <class name="CreateNewCustomer">
-        <test-method status="PASS" signature="TC_01(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:CreateNewCustomer@7113b13f]" name="TC_01" duration-ms="9185" started-at="2018-01-02T00:10:31Z" finished-at="2018-01-02T00:10:40Z">
+    <test name="Test" duration-ms="15208" started-at="2018-01-07T01:31:21Z" finished-at="2018-01-07T01:31:36Z">
+      <class name="ValidateLoginPage">
+        <test-method status="PASS" signature="TC01_ValidLoginCredentials(java.lang.String)[pri:0, instance:ValidateLoginPage@45820e51]" name="TC01_ValidLoginCredentials" duration-ms="6757" started-at="2018-01-06T17:31:21Z" finished-at="2018-01-06T17:31:27Z">
           <params>
             <param index="0">
               <value>
                 <![CDATA[http://www.demo.guru99.com/V4/]]>
               </value>
             </param>
-            <param index="1">
-              <value>
-                <![CDATA[mngr110543]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[jumAged]]>
-              </value>
-            </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_01 -->
-        <test-method status="PASS" signature="TC_02(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:CreateNewCustomer@7113b13f]" name="TC_02" duration-ms="8228" started-at="2018-01-02T00:10:40Z" finished-at="2018-01-02T00:10:48Z">
+        </test-method> <!-- TC01_ValidLoginCredentials -->
+        <test-method status="PASS" signature="TC02_InValidLoginCredentials(java.lang.String)[pri:0, instance:ValidateLoginPage@45820e51]" name="TC02_InValidLoginCredentials" duration-ms="8406" started-at="2018-01-06T17:31:27Z" finished-at="2018-01-06T17:31:36Z">
           <params>
             <param index="0">
               <value>
                 <![CDATA[http://www.demo.guru99.com/V4/]]>
               </value>
             </param>
-            <param index="1">
-              <value>
-                <![CDATA[mngr110543]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[jumAged]]>
-              </value>
-            </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_02 -->
-      </class> <!-- CreateNewCustomer -->
+        </test-method> <!-- TC02_InValidLoginCredentials -->
+      </class> <!-- ValidateLoginPage -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>
