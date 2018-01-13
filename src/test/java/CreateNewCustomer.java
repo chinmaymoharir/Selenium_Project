@@ -1,247 +1,234 @@
-import java.util.concurrent.TimeUnit;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.server.handler.FindElement;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.io.TemporaryFilesystem;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import com.Constants.Credentials;
+import com.PagesUsingPageFactory.NewCustomerPF;
+import com.PagesUsingPageFactory.HomePageUsingPageFactory;
+import com.PagesUsingPageFactory.LoginPageUsingPageFactory;
+import com.PageswithoutPageFactory.InvokeBrowserSettings;
 
 public class CreateNewCustomer {
 	public WebDriver driver;
-	@Test
-	@Parameters({ "URL","username", "password" })
-	public void TC_01(String URL, String username, String password) throws Exception{
-		
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();	
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		
-		//Open URL
-		driver.get(URL);
-		
-		//verify if login page is displayed
-		//We are using assert instead of verify statement because this will help prevent the code from stopping at this point if it fails.
-		//It will continue execution even if it fails at this point
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).isDisplayed(), "login box is not present on UI");
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='password' and @type='password']")).isDisplayed(), "password box is not present on UI");
-		
-		
-		//Enter valid username password and click login
-		driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).sendKeys(username);
-		driver.findElement(By.xpath("//*[@name='password' and @type='password']")).sendKeys(password);
-		
-		//Verify if login button is displayed
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).isDisplayed(), "Login button is displayed");
-		
-		//login to the app and wait
-		driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		
-		//verify home page displayed after valid credentials
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@class='barone' and contains(text(),'Guru99 Bank')]")).isDisplayed(), "Login is not successful");
-		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='orange']//a[contains(text(),'Manager')]")).isDisplayed(), "Login is not successful");
-						
-		Assert.assertTrue(driver.findElement(By.xpath("//a[contains(text(),'New Customer')]")).isDisplayed(), "New customer tab is not visible");
-		driver.findElement(By.xpath("//a[contains(text(),'New Customer')]")).click();
-		
-		//check if add new customer tab is present
-		Assert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).isDisplayed(), "Add new customer option is not visible");
-		//check if customer name textbox is present		
-		Assert.assertTrue(driver.findElement(By.name("name")).isDisplayed(), "Customer name text box is not presernt");
-		driver.findElement(By.name("name")).sendKeys("Chinmay Moharir");
-		
-		
-		//check if male female radio button is visible
-		Assert.assertTrue(driver.findElement(By.xpath("//input[@type='radio'][@name='rad1'][@value='m']")).isDisplayed(), "Male chekbox not visible");
-		Assert.assertTrue(driver.findElement(By.xpath("//input[@type='radio'][@name='rad1'][@value='f']")).isDisplayed(), "Female chekbox not visible");
-		
-		driver.findElement(By.xpath("//input[@type='radio'][@name='rad1'][@value='m']")).click();
-		
-		Assert.assertTrue(driver.findElement(By.xpath("//input[@type='date' and @name='dob']")).isDisplayed(), "Date of birth field is no visible");
-		driver.findElement(By.xpath("//input[@type='date' and @name='dob']")).sendKeys("12");
-		driver.findElement(By.xpath("//input[@type='date' and @name='dob']")).sendKeys("01");
-		driver.findElement(By.xpath("//input[@type='date' and @name='dob']")).sendKeys("1990");
-		
-		
-		Assert.assertTrue(driver.findElement(By.name("addr")).isDisplayed(), "Address text box is not visible");
-		driver.findElement(By.name("addr")).sendKeys("2404 Nutwood Avenue");
-		
-		Assert.assertTrue(driver.findElement(By.name("city")).isDisplayed(), "City text box is not visible");
-		driver.findElement(By.name("city")).sendKeys("Fullerton");
-		
-		Assert.assertTrue(driver.findElement(By.name("state")).isDisplayed(), "State text box is not visible");
-		driver.findElement(By.name("state")).sendKeys("California");
 	
-		Assert.assertTrue(driver.findElement(By.name("pinno")).isDisplayed(), "Postal code text box is not visible");
-		driver.findElement(By.name("pinno")).sendKeys("928311");
-		
-		Assert.assertTrue(driver.findElement(By.name("telephoneno")).isDisplayed(), "Telephone Number text box is not visible");
-		driver.findElement(By.name("telephoneno")).sendKeys("1234567890");
-		
-		
-		String email = RandomStringUtils.randomAlphabetic(10) + "@gmail.com";
-		System.out.println(email);
-		Assert.assertTrue(driver.findElement(By.name("emailid")).isDisplayed(), "Email text box is not visible");
-		driver.findElement(By.name("emailid")).sendKeys(email);
-		
-		
-		
-		Assert.assertTrue(driver.findElement(By.name("password")).isDisplayed(), "Email text box is not visible");
-		driver.findElement(By.name("password")).sendKeys("abcde12345");
-		Assert.assertTrue(driver.findElement(By.xpath("//input[@type='submit' and @value='Submit' and @name='sub']")).isDisplayed(), "Submit button is not displayed");
-		driver.findElement(By.xpath("//input[@type='submit' and @value='Submit' and @name='sub']")).click();
-		
-		Assert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Customer Registered Successfully!!!')]")).isDisplayed(), "Customer was not created successfully");
-		String customerId = driver.findElement(By.xpath("//*[@id='customer']/tbody/tr[4]/td[2]")).getText();
-		System.out.println(customerId);
-		
-		//
-		driver.close();
-
+	//method to initialize browser before test
+	@BeforeMethod
+	public void browserSetUp() {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		InvokeBrowserSettings invoke = new InvokeBrowserSettings();
+		driver = invoke.invokeBrowser("chrome", Constant.URL);
+	}
+	
+	//method to close browser session
+	@AfterMethod
+	public void cleanUpBrowser() {
+		 if (driver != null) {
+		        TemporaryFilesystem.getDefaultTmpFS().deleteTemporaryFiles();
+		        driver.manage().deleteAllCookies();
+		        driver.close();
+		        driver.quit();
+		    }
 	}
 	
 	@Test
-	@Parameters({ "URL","username", "password" })
-	public void TC_02(String URL, String username, String password) throws Exception{
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();	
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	public void TC_01_Positive() throws Exception{
 		
-		//Open URL
-		driver.get(URL);
+		//Creating instance of the classes
+		LoginPageUsingPageFactory loginpage = PageFactory.initElements(driver, LoginPageUsingPageFactory.class);
+		HomePageUsingPageFactory homepage = PageFactory.initElements(driver, HomePageUsingPageFactory.class);
+		NewCustomerPF newcust = PageFactory.initElements(driver, NewCustomerPF.class);
+		Credentials creds = new Credentials();
 		
 		//verify if login page is displayed
-		//We are using assert instead of verify statement because this will help prevent the code from stopping at this point if it fails.
-		//It will continue execution even if it fails at this point
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).isDisplayed(), "login box is not present on UI");
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='password' and @type='password']")).isDisplayed(), "password box is not present on UI");
+		Assert.assertTrue(loginpage.usernameField.isDisplayed(), "Login username text box is not displayed");
+		Assert.assertTrue(loginpage.passwordField.isDisplayed(), "Login password box is not displayed");
+		Assert.assertTrue(loginpage.submit_botton.isDisplayed(), "Login submit button is not displayed");
 		
+		//login to app
+		loginpage.loginApplication(creds.VALID_LOGIN_ID, creds.VALID_PASSWORD);
 		
-		//Enter valid username password and click login
-		driver.findElement(By.xpath("//*[@name='uid' and @type='text']")).sendKeys(username);
-		driver.findElement(By.xpath("//*[@name='password' and @type='password']")).sendKeys(password);
+		//login and wait until home page is displayed
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement waitelement = wait.until(ExpectedConditions.visibilityOf(homepage.homePageLogo));
 		
-		//Verify if login button is displayed
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).isDisplayed(), "Login button is displayed");
-		
-		//login to the app and wait
-		driver.findElement(By.xpath("//*[@name='btnLogin' and @type='submit']")).click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		
 		//verify home page displayed after valid credentials
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@class='barone' and contains(text(),'Guru99 Bank')]")).isDisplayed(), "Login is not successful");
-		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='orange']//a[contains(text(),'Manager')]")).isDisplayed(), "Login is not successful");
-						
-		Assert.assertTrue(driver.findElement(By.xpath("//a[contains(text(),'New Customer')]")).isDisplayed(), "New customer tab is not visible");
-		driver.findElement(By.xpath("//a[contains(text(),'New Customer')]")).click();
+		Assert.assertTrue(homepage.homePageLogo.isDisplayed(), "Home page logo is not displayed");
+		Assert.assertTrue(homepage.managerButton.isDisplayed(), "Login is not successful");
+		Assert.assertTrue(homepage.newCustomerButton.isDisplayed(), "Login is not successful");
 		
+		//click on UI to bring in the warning
+		homepage.newCustomerButton.click();
+
+
 		//check if add new customer tab is present
-		Assert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).isDisplayed(), "Add new customer option is not visible");
+		Assert.assertTrue(newcust.addNewCustomerLabel.isDisplayed(), "Add new customer option is not visible");
 		//check if customer name textbox is present		
-		Assert.assertTrue(driver.findElement(By.name("name")).isDisplayed(), "Customer name text box is not presernt");
-		
-		//name fiel blank validation
-		driver.findElement(By.name("name")).sendKeys("");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Customer name must not be blank')]")).isDisplayed(), "Customer name must not be blank message is not appearing on UI");
-		
-		//name field special characters validation
-		driver.findElement(By.name("name")).sendKeys("@#@%#");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Special characters are not allowed')]")).isDisplayed(), "Customer name must not contain special characters message is not appearing on UI");
+		Assert.assertTrue(newcust.customerNameTxtField.isDisplayed(), "Customer name text box is not presernt");
+
+		//type name of customer
+		newcust.typeCustomerName("Chinmay");
 		
 		
 		//check if male female radio button is visible
-		Assert.assertTrue(driver.findElement(By.xpath("//input[@type='radio'][@name='rad1'][@value='m']")).isDisplayed(), "Male chekbox not visible");
-		Assert.assertTrue(driver.findElement(By.xpath("//input[@type='radio'][@name='rad1'][@value='f']")).isDisplayed(), "Female chekbox not visible");
+		Assert.assertTrue(newcust.maleRadioButton.isDisplayed(), "Male chekbox not visible");
+		Assert.assertTrue(newcust.femaleRadioButton.isDisplayed(), "Female chekbox not visible");
 		
-		driver.findElement(By.xpath("//input[@type='radio'][@name='rad1'][@value='m']")).click();
-		
-		//blank date of birth
-		driver.findElement(By.name("dob")).sendKeys("");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Date Field must not be blank')]")).isDisplayed(), "Date field must not be blank message is not appearing on UI");
-		
-		//addressfield blank validation
-		Assert.assertTrue(driver.findElement(By.name("addr")).isDisplayed(), "Address text box is not visible");
-		driver.findElement(By.name("addr")).sendKeys("");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Address Field must not be blank')]")).isDisplayed(), "Address Field must not be blank message is not appearing on UI");
-		
-		//address field special characters validation
-		driver.findElement(By.name("addr")).sendKeys("!@$#");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Special characters are not allowed')]")).isDisplayed(), "Address Field must not have special characters message is not appearing on UI");
-		
-		Assert.assertTrue(driver.findElement(By.name("city")).isDisplayed(), "City text box is not visible");
-		
-		//city field blank validation
-		driver.findElement(By.name("city")).sendKeys("");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'City Field must not be blank')]")).isDisplayed(), "City field must not be blank message is not appearing on UI");
-		
-		//city field special character validation
-		driver.findElement(By.name("city")).sendKeys("!@$#");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Special characters are not allowed')]")).isDisplayed(), "Address Field must not be blank message is not appearing on UI");
+		//select female gender radio button
+		newcust.checkRadioButtonGender("f");
+		//select male gender radio button
+		newcust.checkRadioButtonGender("mAlE");
 
-		Assert.assertTrue(driver.findElement(By.name("state")).isDisplayed(), "State text box is not visible");
-		//state field blank validation
-		driver.findElement(By.name("state")).sendKeys("");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'State must not be blank')]")).isDisplayed(), "State field must not be blank message is not appearing on UI");
+		//inout date of birth
+		Assert.assertTrue(newcust.dobField.isDisplayed(), "Date of birth field is no visible");
+		newcust.setDob("12", "02", "1990");
 		
-		//state field special character validation
-		driver.findElement(By.name("state")).sendKeys("@##@$");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Special characters are not allowed')]")).isDisplayed(), "State field must not contain special characters message is not appearing on UI");
+		//input address field
+		Assert.assertTrue(newcust.addrressTxtField.isDisplayed(), "Address text box is not visible");
+		newcust.typeAddress("2404 Nutwood Avenue");
+		
+		//input city field
+		Assert.assertTrue(newcust.cityTxtField.isDisplayed(), "City text box is not visible");
+		newcust.typeCity("Fullerton");
+		
+		//input state field
+		Assert.assertTrue(newcust.stateTxtField.isDisplayed(), "State text box is not visible");
+		newcust.typeState("California");
+	
+		//input pin number field
+		Assert.assertTrue(newcust.pinNoField.isDisplayed(), "Postal code text box is not visible");
+		newcust.typePinNo("928311");
 
-		Assert.assertTrue(driver.findElement(By.name("pinno")).isDisplayed(), "Postal code text box is not visible");
+		//input telephone number
+		Assert.assertTrue(newcust.telephoneField.isDisplayed(), "Telephone Number text box is not visible");
+		newcust.typeTelephone("1234567890");
+
+		//input email id
+		Assert.assertTrue(newcust.emailIDField.isDisplayed(), "Email text box is not visible");
+		newcust.typevalidEmailID();
 		
-		//pin number blank validation
-		driver.findElement(By.name("pinno")).sendKeys("");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'PIN Code must not be blank')]")).isDisplayed(), "PIN Code field must not be blank message is not appearing on UI");
+		//inout password
+		Assert.assertTrue(newcust.passwordField.isDisplayed(), "Password box is not visible");
+		newcust.typePassword("abcde12345");
+
+		//submit new customer details
+		Assert.assertTrue(newcust.submitNewCustButton.isDisplayed(), "Submit button is not displayed");
+		newcust.submitNewCust();
+
+		//validate customer creation
+		Assert.assertTrue(newcust.customerRegistrationSuccess.isDisplayed(), "Customer was not created successfully");
+		String customerId = newcust.customerID.getText();
+		System.out.println(customerId);
 		
-		//pin number character validation
-		driver.findElement(By.name("pinno")).sendKeys("abcd");
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Characters are not allowed')]")).isDisplayed(), "PIN Code field characters are not allowed is not appearing on UI");
+	}
+	
+	@Test
+	public void TC_02_Negative() throws Exception{
 		
-		//pin number special character validation
-		driver.findElement(By.name("pinno")).sendKeys("@#$&$");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Special characters are not allowed')]")).isDisplayed(), "PIN Code field must not contain special characters message is not appearing on UI");
-		
-		Assert.assertTrue(driver.findElement(By.name("telephoneno")).isDisplayed(), "Telephone Number text box is not visible");
-		//telephone number blank validation
-		driver.findElement(By.name("telephoneno")).sendKeys("");
-		driver.findElement(By.xpath("//p[contains(text(),'Add New Customer')]")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Mobile no must not be blank')]")).isDisplayed(), "Mobile number field must not be blank message is not appearing on UI");
-		//telephone number character validation
-		driver.findElement(By.name("telephoneno")).sendKeys("abcd");
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Characters are not allowed')]")).isDisplayed(), "PIN Code field characters are not allowed is not appearing on UI");
-		
-		
-		Assert.assertTrue(driver.findElement(By.name("emailid")).isDisplayed(), "Email text box is not visible");
-		//email id validation
-		driver.findElement(By.name("emailid")).sendKeys("asdasdasd");
-		Assert.assertTrue(driver.findElement(By.xpath("//label[contains(text(),'Email-ID is not valid')]")).isDisplayed(), "Invalid email id message is not appearing on UI");
-		
-		
-		driver.close();
-		
+			//Creating instance of the classes
+			HomePageUsingPageFactory homepage = PageFactory.initElements(driver, HomePageUsingPageFactory.class);
+			NewCustomerPF newcust = PageFactory.initElements(driver, NewCustomerPF.class);
+			LoginPageUsingPageFactory loginpage = PageFactory.initElements(driver, LoginPageUsingPageFactory.class);
+			Credentials creds = new Credentials();
+			
+			//verify if login page is displayed
+			Assert.assertTrue(loginpage.usernameField.isDisplayed(), "Username text field is not displayed on UI");
+			Assert.assertTrue(loginpage.passwordField.isDisplayed(), "Password text field is not displayed on UI");
+			Assert.assertTrue(loginpage.submit_botton.isDisplayed(), "Submit button is not displayed on UI");
+			loginpage.loginApplication(creds.VALID_LOGIN_ID, creds.VALID_PASSWORD);
+			
+			//verify home page displayed after valid credentials
+			Assert.assertTrue(homepage.homePageLogo.isDisplayed(), "Homepage logo is not displayed login not successful");
+			Assert.assertTrue(homepage.managerButton.isDisplayed(), "Manager button is not displayed login not successful");
+			Assert.assertTrue(homepage.newCustomerButton.isDisplayed(), "New customer button is not displayed login not successful");
+			
+			//Click on New customer cuutton to create new customer
+			homepage.clickNewCustomerButton();
+			
+			//check if add new customer tab is present
+			Assert.assertTrue(newcust.addNewCustomerLabel.isDisplayed(), "Add new customer option is not visible");
+			
+			//check if customer name textbox is present		
+			Assert.assertTrue(newcust.customerNameTxtField.isDisplayed(), "Customer name text box is not presernt");
+			
+			//validate name field
+			newcust.typeCustomerName("");
+			//click else where on UI to simulate warning message
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningBlankName.isDisplayed(), "Customer name must not be blank message is not appearing on UI");
+			newcust.typeCustomerName("@#!@$");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningSpecialCharactersGeneric.isDisplayed(), "Customer name must not contain special characters message is not appearing on UI");
+			
+			
+			//check if male female radio button is visible
+			Assert.assertTrue(newcust.maleRadioButton.isDisplayed(), "Male chekbox not visible");
+			Assert.assertTrue(newcust.femaleRadioButton.isDisplayed(), "Female chekbox not visible");
+			
+			newcust.checkRadioButtonGender("m");
+
+			
+			//validate date of birth
+			newcust.setDob("", "", "");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningBlankDOB.isDisplayed(), "Date field must not be blank message is not appearing on UI");
+			
+			//validate addressfield
+			Assert.assertTrue(newcust.addrressTxtField.isDisplayed(), "Address text box is not visible");
+			newcust.typeAddress("");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningBlankAddress.isDisplayed(), "Address Field must not be blank message is not appearing on UI");
+			newcust.typeAddress("%^&$#");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningSpecialCharactersGeneric.isDisplayed(), "Address Field must not have special characters message is not appearing on UI");
+			
+			//validate city field
+			Assert.assertTrue(newcust.cityTxtField.isDisplayed(), "City text box is not visible");
+			newcust.typeCity("");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningBlankCity.isDisplayed(), "City field must not be blank message is not appearing on UI");
+			newcust.typeCity("@^%#&");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningSpecialCharactersGeneric.isDisplayed(), "Address Field must not contain special characters is not appearing on UI");
+
+			//validate state field
+			Assert.assertTrue(newcust.stateTxtField.isDisplayed(), "State text box is not visible");
+			newcust.typeState("");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningBlankState.isDisplayed(), "State field must not be blank message is not appearing on UI");
+			newcust.typeState("@^*@!");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningSpecialCharactersGeneric.isDisplayed(), "State field must not contain special characters message is not appearing on UI");
+
+			//validate pin number
+			Assert.assertTrue(newcust.pinNoField.isDisplayed(), "Postal code text box is not visible");
+			newcust.typePinNo("");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningBlankPinNo.isDisplayed(), "PIN Code field must not be blank message is not appearing on UI");
+			newcust.typePinNo("abcd");
+			Assert.assertTrue(newcust.warningCharGeneric.isDisplayed(), "PIN Code field characters are not allowed is not appearing on UI");
+			newcust.typePinNo("#%!^@*");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningSpecialCharactersGeneric.isDisplayed(), "PIN Code field must not contain special characters message is not appearing on UI");
+			
+			//validate telephone number
+			Assert.assertTrue(newcust.telephoneField.isDisplayed(), "Telephone Number text box is not visible");
+			newcust.typeTelephone("");
+			newcust.clickAddNewCustLabel();
+			Assert.assertTrue(newcust.warningBlankTelephone.isDisplayed(), "Mobile number field must not be blank message is not appearing on UI");
+			newcust.typeTelephone("abcd");
+			Assert.assertTrue(newcust.warningCharGeneric.isDisplayed(), "Telephone number field characters are not allowed is not appearing on UI");
+			
+			//validate email id
+			Assert.assertTrue(newcust.emailIDField.isDisplayed(), "Email text box is not visible");
+			newcust.typeEmailID("abcdefgh");
+			Assert.assertTrue(newcust.warningInvalidEmail.isDisplayed(), "Invalid email id message is not appearing on UI");
+								
 	}
 }

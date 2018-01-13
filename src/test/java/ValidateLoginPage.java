@@ -1,118 +1,114 @@
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.TemporaryFilesystem;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.Constants.Alerts;
-import com.Pages.HomePage;
-import com.Pages.LoginPage;
+import com.Constants.Credentials;
+import com.PagesUsingPageFactory.LoginPageUsingPageFactory;
+import com.PageswithoutPageFactory.HomePage;
+import com.PageswithoutPageFactory.InvokeBrowserSettings;
+import com.PageswithoutPageFactory.LoginPage;
 
 /*Test Case Created By Chinmay Moharir
  * Title: Validate Login for the application
+ * 
+ * 
 */
 public class ValidateLoginPage extends ReadDataFromProperties{
 	public static WebDriver driver;
-	@Test
-	@Parameters({ "URL"})
-	public void TC01_ValidLoginCredentials(String URL) throws Exception{
-		/*InvokeBrowserSettings invoke = new InvokeBrowserSettings();
-		invoke.invokeBrowser(driver, URL);
-		*/LoginPage login = new LoginPage(driver);
-		HomePage home = new HomePage(driver);
-		
+	
+	//method to set browser properties
+	@BeforeMethod
+	public void browserSetUp() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();	
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
+		InvokeBrowserSettings invoke = new InvokeBrowserSettings();
+		driver = invoke.invokeBrowser("chrome", Constant.URL);
+	}
+	
+	//method to close session
+	@AfterMethod
+	public void cleanUpBrowser() {
+		 if (driver != null) {
+		        TemporaryFilesystem.getDefaultTmpFS().deleteTemporaryFiles();
+		        driver.close();
+		        driver.quit();
+		    }
+	}
+	
+	@Test
+	public void TC01_ValidLoginCredentials() throws Exception{
 		
-		//Open URL
-		driver.get(URL);
+		//creating instance of the constructor classes
+		HomePage home = new HomePage(driver);
+		Credentials creds = new Credentials();
+		LoginPageUsingPageFactory logpg = PageFactory.initElements(driver, LoginPageUsingPageFactory.class);
 		
 		//verify if login page is displayed correctly
-		Assert.assertTrue(driver.findElement(login.usernameField).isDisplayed(), "login box is not present on UI");
-		Assert.assertTrue(driver.findElement(login.passwordField).isDisplayed(), "password box is not present on UI");
-		Assert.assertTrue(driver.findElement(login.loginSubmitButton).isDisplayed(), "login button is not present on UI");
+		Assert.assertTrue(logpg.usernameField.isDisplayed(), "login box is not present on UI");
+		Assert.assertTrue(logpg.passwordField.isDisplayed(), "password box is not present on UI");
+		Assert.assertTrue(logpg.submit_botton.isDisplayed(), "login button is not present on UI");
 		
 		//login to app
-		login.typeUsername(driver);
-		login.typePassword(driver);
-		
-		login.loginApp(driver);
+		logpg.loginApplication(creds.VALID_LOGIN_ID, creds.VALID_PASSWORD);
 		
 		//validate login page
 		Assert.assertTrue(driver.findElement(home.homePageLogo).isDisplayed(), "Home page logo is not displayed");
 		Assert.assertTrue(driver.findElement(home.managerButton).isDisplayed(), "Manager button is not displayed");
 		Assert.assertTrue(driver.findElement(home.newCustomerButton).isDisplayed(), "New Customer button is not displayed");
 		
-		driver.close();
 	}
 	
 	@Test
-	@Parameters({ "URL"})
-	public void TC02_InValidLoginCredentials(String URL) throws Exception{
-		LoginPage login = new LoginPage(driver);
-		Alerts alert = new Alerts();
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();	
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
+	public void TC02_InValidLoginCredentials() throws Exception{
 		
-		//Open URL
-		driver.get(URL);
+		//Creating instances for constructor classes
+		Alerts alert = new Alerts(driver);
+		LoginPage loginpg = new LoginPage(driver);
+		Credentials creds = new Credentials();
 		
 		//verify if login page is displayed correctly
-		Assert.assertTrue(driver.findElement(login.usernameField).isDisplayed(), "login box is not present on UI");
-		Assert.assertTrue(driver.findElement(login.passwordField).isDisplayed(), "password box is not present on UI");
-		Assert.assertTrue(driver.findElement(login.loginSubmitButton).isDisplayed(), "login button is not present on UI");
+		Assert.assertTrue(driver.findElement(loginpg.usernameField).isDisplayed(), "login box is not present on UI");
+		Assert.assertTrue(driver.findElement(loginpg.passwordField).isDisplayed(), "password box is not present on UI");
+		Assert.assertTrue(driver.findElement(loginpg.loginSubmitButton).isDisplayed(), "login button is not present on UI");
 		
 		//Enter invalid username and valid password and click login
-		login.typeInvalidUsername(driver);
-		login.typePassword(driver);
-		
-		login.loginApp(driver);
+		loginpg.loginApp(driver, creds.INVALID_LOGIN_ID, creds.VALID_PASSWORD);
 		
 		//Verify popup is displayed for invalid username and valid password
-		Assert.assertEquals(driver.switchTo().alert().getText(), alert.LOGIN_ALERT_POPUP, "Alert message not displayed correctly");
+		Assert.assertEquals(alert.getAlertmessageofpopuup(driver), alert.LOGIN_ALERT_POPUP, "Alert message not displayed correctly");
 		
-		driver.switchTo().alert().accept();
+		alert.acceptAlertMessage(driver);
 
-		driver.navigate().to(URL);
+		driver.navigate().to(Constant.URL);
 		
 		//verify if login page is displayed correctly
-		Assert.assertTrue(driver.findElement(login.usernameField).isDisplayed(), "login box is not present on UI");
-		Assert.assertTrue(driver.findElement(login.passwordField).isDisplayed(), "password box is not present on UI");
-		Assert.assertTrue(driver.findElement(login.loginSubmitButton).isDisplayed(), "login button is not present on UI");
+		Assert.assertTrue(driver.findElement(loginpg.usernameField).isDisplayed(), "login box is not present on UI");
+		Assert.assertTrue(driver.findElement(loginpg.passwordField).isDisplayed(), "password box is not present on UI");
+		Assert.assertTrue(driver.findElement(loginpg.loginSubmitButton).isDisplayed(), "login button is not present on UI");
 				
 		//Enter valid username and invalid password and click login
-		login.typeUsername(driver);
-		login.typeinvalidPassword(driver);
-				
-		login.loginApp(driver);
+		loginpg.loginApp(driver, creds.VALID_LOGIN_ID, creds.INVALID_PASSWORD);
 		//Verify popup is displayed for valid username and invalid password
 		Assert.assertEquals(driver.switchTo().alert().getText(), alert.LOGIN_ALERT_POPUP, "Alert message not displayed correctly");
 		
 		driver.switchTo().alert().accept();
 		
-		driver.navigate().to(URL);
+		driver.navigate().to(Constant.URL);
 		
 		//verify if login page is displayed correctly
-		Assert.assertTrue(driver.findElement(login.usernameField).isDisplayed(), "login box is not present on UI");
-		Assert.assertTrue(driver.findElement(login.passwordField).isDisplayed(), "password box is not present on UI");
-		Assert.assertTrue(driver.findElement(login.loginSubmitButton).isDisplayed(), "login button is not present on UI");
-				
+		Assert.assertTrue(driver.findElement(loginpg.usernameField).isDisplayed(), "login box is not present on UI");
+		Assert.assertTrue(driver.findElement(loginpg.passwordField).isDisplayed(), "password box is not present on UI");
+		Assert.assertTrue(driver.findElement(loginpg.loginSubmitButton).isDisplayed(), "login button is not present on UI");
+		
 		//Enter valid username and invalid password and click login
-		login.typeInvalidUsername(driver);
-		login.typeinvalidPassword(driver);
-				
-		login.loginApp(driver);
+		loginpg.loginApp(driver, creds.INVALID_LOGIN_ID, creds.INVALID_PASSWORD);
 		//Verify popup is displayed for invalid username and invalid password
 		Assert.assertEquals(driver.switchTo().alert().getText(), alert.LOGIN_ALERT_POPUP, "Alert message not displayed correctly");
 		
 		driver.switchTo().alert().accept();
-		
-		driver.close();
-		
 		
 	}
 }

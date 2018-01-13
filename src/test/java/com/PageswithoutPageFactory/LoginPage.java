@@ -1,13 +1,7 @@
-package com.Pages;
-/*
- * This class has all the details of login page
-
-
-*/
-
+package com.PageswithoutPageFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.Parameters;
+
 
 import com.Constants.Credentials;
 
@@ -27,14 +21,14 @@ public class LoginPage {
 		driver.findElement(loginSubmitButton).click();
 	}
 	
-	public void typeUsername(WebDriver driver) {
-		driver.findElement(usernameField).sendKeys(creds.VALID_LOGIN_ID);
+	public void typeUsername(WebDriver driver, String username) {
+		driver.findElement(usernameField).sendKeys(username);
 	}
 
-	public void typePassword(WebDriver driver) {
-		driver.findElement(passwordField).sendKeys(creds.VALID_PASSWORD);
+	public void typePassword(WebDriver driver, String password) {
+		driver.findElement(passwordField).sendKeys(password);
 	}
-	public void loginApp(WebDriver driver) {
+	public void clickLoginButton(WebDriver driver) {
 		driver.findElement(loginSubmitButton).click();
 		
 	}
@@ -45,5 +39,10 @@ public class LoginPage {
 
 	public void typeinvalidPassword(WebDriver driver) {
 		driver.findElement(passwordField).sendKeys(creds.INVALID_PASSWORD);
+	}
+	public void loginApp(WebDriver driver, String username, String password) {
+		driver.findElement(usernameField).sendKeys(username);
+		driver.findElement(passwordField).sendKeys(password);
+		driver.findElement(loginSubmitButton).click();
 	}
 }

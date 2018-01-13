@@ -1,6 +1,6 @@
 import org.testng.annotations.Test;
 
-import com.Pages.*;
+import com.PageswithoutPageFactory.*;
 
 public class EditCustomer {
 
