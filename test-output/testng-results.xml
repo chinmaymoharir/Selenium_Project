@@ -1,34 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="15208" started-at="2018-01-07T01:31:21Z" finished-at="2018-01-07T01:31:36Z">
+  <suite name="Suite" duration-ms="33306" started-at="2018-01-13T02:59:13Z" finished-at="2018-01-13T02:59:46Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="15208" started-at="2018-01-07T01:31:21Z" finished-at="2018-01-07T01:31:36Z">
+    <test name="Test" duration-ms="33306" started-at="2018-01-13T02:59:13Z" finished-at="2018-01-13T02:59:46Z">
+      <class name="CreateNewCustomer">
+        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:CreateNewCustomer@a38d7a3]" name="browserSetUp" is-config="true" duration-ms="4359" started-at="2018-01-12T18:59:28Z" finished-at="2018-01-12T18:59:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserSetUp -->
+        <test-method status="PASS" signature="TC_01_Positive()[pri:0, instance:CreateNewCustomer@a38d7a3]" name="TC_01_Positive" duration-ms="3717" started-at="2018-01-12T18:59:33Z" finished-at="2018-01-12T18:59:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_01_Positive -->
+        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:CreateNewCustomer@a38d7a3]" name="cleanUpBrowser" is-config="true" duration-ms="843" started-at="2018-01-12T18:59:36Z" finished-at="2018-01-12T18:59:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanUpBrowser -->
+        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:CreateNewCustomer@a38d7a3]" name="browserSetUp" is-config="true" duration-ms="4184" started-at="2018-01-12T18:59:37Z" finished-at="2018-01-12T18:59:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserSetUp -->
+        <test-method status="PASS" signature="TC_02_Negative()[pri:0, instance:CreateNewCustomer@a38d7a3]" name="TC_02_Negative" duration-ms="3746" started-at="2018-01-12T18:59:41Z" finished-at="2018-01-12T18:59:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_02_Negative -->
+        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:CreateNewCustomer@a38d7a3]" name="cleanUpBrowser" is-config="true" duration-ms="802" started-at="2018-01-12T18:59:45Z" finished-at="2018-01-12T18:59:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanUpBrowser -->
+      </class> <!-- CreateNewCustomer -->
       <class name="ValidateLoginPage">
-        <test-method status="PASS" signature="TC01_ValidLoginCredentials(java.lang.String)[pri:0, instance:ValidateLoginPage@45820e51]" name="TC01_ValidLoginCredentials" duration-ms="6757" started-at="2018-01-06T17:31:21Z" finished-at="2018-01-06T17:31:27Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[http://www.demo.guru99.com/V4/]]>
-              </value>
-            </param>
-          </params>
+        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:ValidateLoginPage@1a3869f4]" name="browserSetUp" is-config="true" duration-ms="5218" started-at="2018-01-12T18:59:13Z" finished-at="2018-01-12T18:59:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserSetUp -->
+        <test-method status="PASS" signature="TC01_ValidLoginCredentials()[pri:0, instance:ValidateLoginPage@1a3869f4]" name="TC01_ValidLoginCredentials" duration-ms="1103" started-at="2018-01-12T18:59:18Z" finished-at="2018-01-12T18:59:19Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC01_ValidLoginCredentials -->
-        <test-method status="PASS" signature="TC02_InValidLoginCredentials(java.lang.String)[pri:0, instance:ValidateLoginPage@45820e51]" name="TC02_InValidLoginCredentials" duration-ms="8406" started-at="2018-01-06T17:31:27Z" finished-at="2018-01-06T17:31:36Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[http://www.demo.guru99.com/V4/]]>
-              </value>
-            </param>
-          </params>
+        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:ValidateLoginPage@1a3869f4]" name="cleanUpBrowser" is-config="true" duration-ms="847" started-at="2018-01-12T18:59:19Z" finished-at="2018-01-12T18:59:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanUpBrowser -->
+        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:ValidateLoginPage@1a3869f4]" name="browserSetUp" is-config="true" duration-ms="4227" started-at="2018-01-12T18:59:20Z" finished-at="2018-01-12T18:59:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserSetUp -->
+        <test-method status="PASS" signature="TC02_InValidLoginCredentials()[pri:0, instance:ValidateLoginPage@1a3869f4]" name="TC02_InValidLoginCredentials" duration-ms="3182" started-at="2018-01-12T18:59:24Z" finished-at="2018-01-12T18:59:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC02_InValidLoginCredentials -->
+        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:ValidateLoginPage@1a3869f4]" name="cleanUpBrowser" is-config="true" duration-ms="1057" started-at="2018-01-12T18:59:27Z" finished-at="2018-01-12T18:59:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanUpBrowser -->
       </class> <!-- ValidateLoginPage -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->

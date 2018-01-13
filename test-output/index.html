@@ -91,7 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">4 methods,   4 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -102,12 +102,22 @@
                     <div class="method-list-content passed suite-Suite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ValidateLoginPage" hash-for-method="TC01_ValidLoginCredentials(http://www.demo.guru99.com/V4/)">TC01_ValidLoginCredentials(http://www.demo.guru99.com/V4/)</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ValidateLoginPage" hash-for-method="TC01_ValidLoginCredentials">TC01_ValidLoginCredentials</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ValidateLoginPage" hash-for-method="TC02_InValidLoginCredentials(http://www.demo.guru99.com/V4/)">TC02_InValidLoginCredentials(http://www.demo.guru99.com/V4/)</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ValidateLoginPage" hash-for-method="TC02_InValidLoginCredentials">TC02_InValidLoginCredentials</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="CreateNewCustomer" hash-for-method="TC_01_Positive">TC_01_Positive</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="CreateNewCustomer" hash-for-method="TC_02_Negative">TC_02_Negative</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -130,18 +140,38 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="TC01_ValidLoginCredentials(http://www.demo.guru99.com/V4/)">
-                  </a> <!-- TC01_ValidLoginCredentials(http://www.demo.guru99.com/V4/) -->
+                  <a name="TC01_ValidLoginCredentials">
+                  </a> <!-- TC01_ValidLoginCredentials -->
                   <span class="method-name">TC01_ValidLoginCredentials</span>
-                  <span class="parameters">(http://www.demo.guru99.com/V4/)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="TC02_InValidLoginCredentials(http://www.demo.guru99.com/V4/)">
-                  </a> <!-- TC02_InValidLoginCredentials(http://www.demo.guru99.com/V4/) -->
+                  <a name="TC02_InValidLoginCredentials">
+                  </a> <!-- TC02_InValidLoginCredentials -->
                   <span class="method-name">TC02_InValidLoginCredentials</span>
-                  <span class="parameters">(http://www.demo.guru99.com/V4/)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite-class-passed -->
+          <div class="suite-Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">CreateNewCustomer</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_01_Positive">
+                  </a> <!-- TC_01_Positive -->
+                  <span class="method-name">TC_01_Positive</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_02_Negative">
+                  </a> <!-- TC_02_Negative -->
+                  <span class="method-name">TC_02_Negative</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -164,6 +194,7 @@
     &lt;parameter name=&quot;username&quot; value=&quot;mngr110543&quot;/&gt;
     &lt;classes&gt;
       &lt;class name=&quot;ValidateLoginPage&quot;/&gt;
+      &lt;class name=&quot;CreateNewCustomer&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Test --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
@@ -177,7 +208,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Test (1 class)</span>
+                <span class="test-name">Test (2 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -203,20 +234,28 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(4);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'TC02_InValidLoginCredentials')
-data.setCell(0, 2, 'ValidateLoginPage')
-data.setCell(0, 3, 8406);
+data.setCell(0, 1, 'TC_02_Negative')
+data.setCell(0, 2, 'CreateNewCustomer')
+data.setCell(0, 3, 3746);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'TC01_ValidLoginCredentials')
-data.setCell(1, 2, 'ValidateLoginPage')
-data.setCell(1, 3, 6757);
+data.setCell(1, 1, 'TC_01_Positive')
+data.setCell(1, 2, 'CreateNewCustomer')
+data.setCell(1, 3, 3717);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'TC02_InValidLoginCredentials')
+data.setCell(2, 2, 'ValidateLoginPage')
+data.setCell(2, 3, 3182);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'TC01_ValidLoginCredentials')
+data.setCell(3, 2, 'ValidateLoginPage')
+data.setCell(3, 3, 1103);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 15 seconds</span>
+              <span class="suite-total-time">Total running time: 11 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -243,14 +282,57 @@ return data;
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">ValidateLoginPage</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">TC01_ValidLoginCredentials(http://www.demo.guru99.com/V4/)</span>
+              <div class="configuration-method before">
+                <span class="method-name">browserSetUp</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- test-method -->
+              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">TC02_InValidLoginCredentials(http://www.demo.guru99.com/V4/)</span>
-                <span class="method-start">6768 ms</span>
+                <span class="method-name">TC01_ValidLoginCredentials</span>
+                <span class="method-start">5218 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">cleanUpBrowser</span>
+                <span class="method-start">6325 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">browserSetUp</span>
+                <span class="method-start">7173 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC02_InValidLoginCredentials</span>
+                <span class="method-start">11400 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">cleanUpBrowser</span>
+                <span class="method-start">14584 ms</span>
+              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">CreateNewCustomer</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">browserSetUp</span>
+                <span class="method-start">15641 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC_01_Positive</span>
+                <span class="method-start">20000 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">cleanUpBrowser</span>
+                <span class="method-start">23718 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">browserSetUp</span>
+                <span class="method-start">24561 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC_02_Negative</span>
+                <span class="method-start">28745 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">cleanUpBrowser</span>
+                <span class="method-start">32492 ms</span>
+              </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

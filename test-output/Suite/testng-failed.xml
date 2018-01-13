@@ -10,7 +10,9 @@
     <classes>
       <class name="ValidateLoginPage">
         <methods>
-          <include name="TC01_ValidLoginCredentials" invocation-numbers="0"/>
+          <include name="browserSetUp"/>
+          <include name="TC02_InValidLoginCredentials"/>
+          <include name="cleanUpBrowser"/>
         </methods>
       </class> <!-- ValidateLoginPage -->
     </classes>
