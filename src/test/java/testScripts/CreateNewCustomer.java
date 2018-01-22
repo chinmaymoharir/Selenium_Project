@@ -1,6 +1,5 @@
 package testScripts;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.io.TemporaryFilesystem;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -56,7 +55,7 @@ public class CreateNewCustomer {
 		
 		//login and wait until home page is displayed
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		WebElement waitelement = wait.until(ExpectedConditions.visibilityOf(homepage.homePageLogo));
+		wait.until(ExpectedConditions.visibilityOf(homepage.homePageLogo));
 		
 		
 		//verify home page displayed after valid credentials
