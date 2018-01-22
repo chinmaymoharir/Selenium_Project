@@ -1,4 +1,4 @@
-# Selenium Project using testng and maven framework
+# Selenium framework Project using testng and maven
 •	Selenium automation with testng framework and maven build
 •	Following page object model for better maintainability
 •	Best possible QA methodologies employed in project to have a better selenium code
