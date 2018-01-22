@@ -1,3 +1,4 @@
+package testScripts;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.io.TemporaryFilesystem;
@@ -8,11 +9,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import com.Constants.Constant;
 import com.Constants.Credentials;
-import com.PagesUsingPageFactory.NewCustomerPF;
-import com.PagesUsingPageFactory.HomePageUsingPageFactory;
-import com.PagesUsingPageFactory.LoginPageUsingPageFactory;
-import com.PageswithoutPageFactory.InvokeBrowserSettings;
+import pageActions.*;
+import testBase.*;
 
 public class CreateNewCustomer {
 	public WebDriver driver;
@@ -40,8 +41,8 @@ public class CreateNewCustomer {
 	public void TC_01_Positive() throws Exception{
 		
 		//Creating instance of the classes
-		LoginPageUsingPageFactory loginpage = PageFactory.initElements(driver, LoginPageUsingPageFactory.class);
-		HomePageUsingPageFactory homepage = PageFactory.initElements(driver, HomePageUsingPageFactory.class);
+		LoginPagePF loginpage = PageFactory.initElements(driver, LoginPagePF.class);
+		HomePagePF homepage = PageFactory.initElements(driver, HomePagePF.class);
 		NewCustomerPF newcust = PageFactory.initElements(driver, NewCustomerPF.class);
 		Credentials creds = new Credentials();
 		
@@ -132,9 +133,9 @@ public class CreateNewCustomer {
 	public void TC_02_Negative() throws Exception{
 		
 			//Creating instance of the classes
-			HomePageUsingPageFactory homepage = PageFactory.initElements(driver, HomePageUsingPageFactory.class);
+			HomePagePF homepage = PageFactory.initElements(driver, HomePagePF.class);
 			NewCustomerPF newcust = PageFactory.initElements(driver, NewCustomerPF.class);
-			LoginPageUsingPageFactory loginpage = PageFactory.initElements(driver, LoginPageUsingPageFactory.class);
+			LoginPagePF loginpage = PageFactory.initElements(driver, LoginPagePF.class);
 			Credentials creds = new Credentials();
 			
 			//verify if login page is displayed

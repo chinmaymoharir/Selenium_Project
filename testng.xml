@@ -8,8 +8,9 @@
 	<parameter name="invalidUsername" value="mnsgshs"/>
 	<parameter name="invalidPassword" value="jumSbdajb"/>
 	<classes>
-      <class name="ValidateLoginPage"/> 
-	  <class name="CreateNewCustomer"/> 
+     <class name="testScripts.ValidateLoginPage"/> 
+	 <class name="testScripts.CreateNewCustomer"/> 
+	 <class name="testScripts.EditCustomer" />  
 	 
     </classes>
   </test> <!-- Test -->

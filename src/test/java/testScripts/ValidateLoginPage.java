@@ -1,3 +1,4 @@
+package testScripts;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.TemporaryFilesystem;
 import org.openqa.selenium.support.PageFactory;
@@ -5,19 +6,15 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import com.Constants.Alerts;
-import com.Constants.Credentials;
-import com.PagesUsingPageFactory.LoginPageUsingPageFactory;
-import com.PageswithoutPageFactory.HomePage;
-import com.PageswithoutPageFactory.InvokeBrowserSettings;
-import com.PageswithoutPageFactory.LoginPage;
-
+import com.Constants.*;
+import pageActions.*;
+import testBase.*;
 /*Test Case Created By Chinmay Moharir
  * Title: Validate Login for the application
  * 
  * 
 */
-public class ValidateLoginPage extends ReadDataFromProperties{
+public class ValidateLoginPage{
 	public static WebDriver driver;
 	
 	//method to set browser properties
@@ -25,6 +22,7 @@ public class ValidateLoginPage extends ReadDataFromProperties{
 	public void browserSetUp() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Chinmay\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		InvokeBrowserSettings invoke = new InvokeBrowserSettings();
+
 		driver = invoke.invokeBrowser("chrome", Constant.URL);
 	}
 	
@@ -44,7 +42,7 @@ public class ValidateLoginPage extends ReadDataFromProperties{
 		//creating instance of the constructor classes
 		HomePage home = new HomePage(driver);
 		Credentials creds = new Credentials();
-		LoginPageUsingPageFactory logpg = PageFactory.initElements(driver, LoginPageUsingPageFactory.class);
+		LoginPagePF logpg = PageFactory.initElements(driver, LoginPagePF.class);
 		
 		//verify if login page is displayed correctly
 		Assert.assertTrue(logpg.usernameField.isDisplayed(), "login box is not present on UI");
@@ -73,6 +71,8 @@ public class ValidateLoginPage extends ReadDataFromProperties{
 		Assert.assertTrue(driver.findElement(loginpg.usernameField).isDisplayed(), "login box is not present on UI");
 		Assert.assertTrue(driver.findElement(loginpg.passwordField).isDisplayed(), "password box is not present on UI");
 		Assert.assertTrue(driver.findElement(loginpg.loginSubmitButton).isDisplayed(), "login button is not present on UI");
+		
+		
 		
 		//Enter invalid username and valid password and click login
 		loginpg.loginApp(driver, creds.INVALID_LOGIN_ID, creds.VALID_PASSWORD);
@@ -109,6 +109,7 @@ public class ValidateLoginPage extends ReadDataFromProperties{
 		Assert.assertEquals(driver.switchTo().alert().getText(), alert.LOGIN_ALERT_POPUP, "Alert message not displayed correctly");
 		
 		driver.switchTo().alert().accept();
+		
 		
 	}
 }
