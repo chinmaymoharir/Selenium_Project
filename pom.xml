@@ -3,6 +3,7 @@
   <groupId>Bankingdomain</groupId>
   <artifactId>01</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
   <name>TC_1</name>
   
   <properties>

@@ -1,77 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="5" passed="5">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="65838" started-at="2018-01-22T09:04:48Z" finished-at="2018-01-22T09:05:54Z">
+  <suite name="Suite" duration-ms="13382" started-at="2018-02-01T20:58:26Z" finished-at="2018-02-01T20:58:39Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="65838" started-at="2018-01-22T09:04:48Z" finished-at="2018-01-22T09:05:54Z">
+    <test name="Test" duration-ms="13382" started-at="2018-02-01T20:58:26Z" finished-at="2018-02-01T20:58:39Z">
       <class name="testScripts.EditCustomer">
-        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:testScripts.EditCustomer@c81cdd1]" name="browserSetUp" is-config="true" duration-ms="7746" started-at="2018-01-22T01:05:35Z" finished-at="2018-01-22T01:05:42Z">
+        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:testScripts.EditCustomer@13eb8acf]" name="browserSetUp" is-config="true" duration-ms="5156" started-at="2018-02-01T12:58:26Z" finished-at="2018-02-01T12:58:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserSetUp -->
-        <test-method status="PASS" signature="TC_01()[pri:0, instance:testScripts.EditCustomer@c81cdd1]" name="TC_01" duration-ms="10277" started-at="2018-01-22T01:05:42Z" finished-at="2018-01-22T01:05:53Z">
+        <test-method status="PASS" signature="TC_01()[pri:0, instance:testScripts.EditCustomer@13eb8acf]" name="TC_01" duration-ms="7044" started-at="2018-02-01T12:58:31Z" finished-at="2018-02-01T12:58:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC_01 -->
-        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:testScripts.EditCustomer@c81cdd1]" name="cleanUpBrowser" is-config="true" duration-ms="1314" started-at="2018-01-22T01:05:53Z" finished-at="2018-01-22T01:05:54Z">
+        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:testScripts.EditCustomer@13eb8acf]" name="cleanUpBrowser" is-config="true" duration-ms="1145" started-at="2018-02-01T12:58:38Z" finished-at="2018-02-01T12:58:39Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cleanUpBrowser -->
       </class> <!-- testScripts.EditCustomer -->
-      <class name="testScripts.ValidateLoginPage">
-        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:testScripts.ValidateLoginPage@7403c468]" name="browserSetUp" is-config="true" duration-ms="6343" started-at="2018-01-22T01:04:48Z" finished-at="2018-01-22T01:04:54Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- browserSetUp -->
-        <test-method status="PASS" signature="TC01_ValidLoginCredentials()[pri:0, instance:testScripts.ValidateLoginPage@7403c468]" name="TC01_ValidLoginCredentials" duration-ms="1733" started-at="2018-01-22T01:04:54Z" finished-at="2018-01-22T01:04:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC01_ValidLoginCredentials -->
-        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:testScripts.ValidateLoginPage@7403c468]" name="cleanUpBrowser" is-config="true" duration-ms="1057" started-at="2018-01-22T01:04:56Z" finished-at="2018-01-22T01:04:57Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUpBrowser -->
-        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:testScripts.ValidateLoginPage@7403c468]" name="browserSetUp" is-config="true" duration-ms="5273" started-at="2018-01-22T01:04:57Z" finished-at="2018-01-22T01:05:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- browserSetUp -->
-        <test-method status="PASS" signature="TC02_InValidLoginCredentials()[pri:0, instance:testScripts.ValidateLoginPage@7403c468]" name="TC02_InValidLoginCredentials" duration-ms="6300" started-at="2018-01-22T01:05:03Z" finished-at="2018-01-22T01:05:09Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC02_InValidLoginCredentials -->
-        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:testScripts.ValidateLoginPage@7403c468]" name="cleanUpBrowser" is-config="true" duration-ms="1234" started-at="2018-01-22T01:05:09Z" finished-at="2018-01-22T01:05:10Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUpBrowser -->
-      </class> <!-- testScripts.ValidateLoginPage -->
-      <class name="testScripts.CreateNewCustomer">
-        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:testScripts.CreateNewCustomer@43738a82]" name="browserSetUp" is-config="true" duration-ms="5554" started-at="2018-01-22T01:05:10Z" finished-at="2018-01-22T01:05:16Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- browserSetUp -->
-        <test-method status="PASS" signature="TC_01_Positive()[pri:0, instance:testScripts.CreateNewCustomer@43738a82]" name="TC_01_Positive" duration-ms="5445" started-at="2018-01-22T01:05:16Z" finished-at="2018-01-22T01:05:21Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC_01_Positive -->
-        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:testScripts.CreateNewCustomer@43738a82]" name="cleanUpBrowser" is-config="true" duration-ms="1649" started-at="2018-01-22T01:05:21Z" finished-at="2018-01-22T01:05:23Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUpBrowser -->
-        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:testScripts.CreateNewCustomer@43738a82]" name="browserSetUp" is-config="true" duration-ms="6114" started-at="2018-01-22T01:05:23Z" finished-at="2018-01-22T01:05:29Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- browserSetUp -->
-        <test-method status="PASS" signature="TC_02_Negative()[pri:0, instance:testScripts.CreateNewCustomer@43738a82]" name="TC_02_Negative" duration-ms="4501" started-at="2018-01-22T01:05:29Z" finished-at="2018-01-22T01:05:33Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC_02_Negative -->
-        <test-method status="PASS" signature="cleanUpBrowser()[pri:0, instance:testScripts.CreateNewCustomer@43738a82]" name="cleanUpBrowser" is-config="true" duration-ms="1256" started-at="2018-01-22T01:05:33Z" finished-at="2018-01-22T01:05:35Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cleanUpBrowser -->
-      </class> <!-- testScripts.CreateNewCustomer -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>

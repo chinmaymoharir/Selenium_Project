@@ -42,6 +42,7 @@ public class EditCustomer {
 				LoginPagePF loginpage = PageFactory.initElements(driver, LoginPagePF.class);
 				HomePagePF homepage = PageFactory.initElements(driver, HomePagePF.class);
 				NewCustomerPF newcust = PageFactory.initElements(driver, NewCustomerPF.class);
+				EditCustomerPF editcust = PageFactory.initElements(driver, EditCustomerPF.class);
 				Credentials creds = new Credentials();
 				
 				//verify if login page is displayed
@@ -70,6 +71,28 @@ public class EditCustomer {
 				
 				homepage.searchCustomer(customerId);
 				
+				//validate if edit customer titleis present
+				editcust.checkEditCustomerTitle();
 				
+				
+				
+				//validate if name, gender and date of birth is not editable
+				editcust.checkNameFieldNotEditable();
+				editcust.checkGenderNotEditable();
+				editcust.checkDateOfBirthNotEditable();
+				
+				//validate if reset button resets all the data to previous value
+				editcust.updateAndCheckResetButton();
+				
+				//clear address field and update with new address
+				editcust.clearAndUpdateAddress();
+				editcust.clearAndUpdateCity();
+				editcust.clearAndUpdateState();
+				editcust.clearAndUpdatePIN();
+				editcust.clearAndUpdateMobile();
+				editcust.clearAndUpdateEmail();
+				editcust.submitEdittedCustomer();
+				
+								
 	}
 }

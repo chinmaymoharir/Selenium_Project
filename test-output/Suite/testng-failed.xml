@@ -8,13 +8,13 @@
     <parameter name="URL" value="http://www.demo.guru99.com/V4/"/>
     <parameter name="username" value="mngr110543"/>
     <classes>
-      <class name="ValidateLoginPage">
+      <class name="testScripts.EditCustomer">
         <methods>
           <include name="browserSetUp"/>
-          <include name="TC02_InValidLoginCredentials"/>
+          <include name="TC_01"/>
           <include name="cleanUpBrowser"/>
         </methods>
-      </class> <!-- ValidateLoginPage -->
+      </class> <!-- testScripts.EditCustomer -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
